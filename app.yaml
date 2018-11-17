@@ -1,0 +1,54 @@
+runtime: php55
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /location/countries
+  script: www/getcountries.php
+- url: /location/citybycountry
+  script: www/getcitybycid.php
+
+- url: /user/createaccount
+  script: www/adduser.php
+- url: /user/notify
+  script: www/getapplicationsbyuid.php
+
+- url: /plans/getplans
+  script: www/getplans.php
+- url: /plans/getplanbyid
+  script: www/getplanbyid.php
+- url: /plans/addplan
+  script: www/addplan.php
+- url: /plans/joinplan
+  script: www/joinplan.php
+- url: /plans/accept
+  script: www/accept.php
+
+- url: /comment/addcomment
+  script: www/addcomment.php 
+- url: /comment/getusers
+  script: www/listofparticipants.php
+
+- url: /
+  script: 404.php
+- url: /conn
+  script: conn.php
+- url: /images
+  static_dir: images
+
+
+
+
+
+env_variables:
+  # Replace USER, PASSWORD, DATABASE, and CONNECTION_NAME with the
+  # values obtained when configuring your Cloud SQL instance.
+  MYSQL_DSN: mysql:unix_socket=/cloudsql/hackathon-718718:asia-east1:travel718718;dbname=travel;charset=utf8
+  MYSQL_USER: root
+  MYSQL_PASSWORD: root
+  enable_stackdriver_integration: true
+  e_key: qzg03cZ8yWS8ky3ZVpKLPRTaMjzgYLaK
+  base_url: /
+
+beta_settings:
+  cloud_sql_instances: "mysql:unix_socket=/cloudsql/hackathon-718718:asia-east1:travel718718;dbname=travel;charset=utf8"

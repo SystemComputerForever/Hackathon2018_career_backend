@@ -1,0 +1,24 @@
+gcloud sql instances describe hackathon-718718:asia-east1:travel718718
+
+windows:
+step 1: install cloud_sql_proxy
+step 2: cd to a location which places cloud_sql_proxy
+step 3: type=> cloud_sql_proxy.exe -instances=hackathon-718718:asia-east1:travel718718=tcp:3307
+p.s. the port should not be used.
+step 4: change the sql connection to local
+    e.g. $dsn = 'mysql:host=127.0.0.1;port=3307;dbname=travel;charset=utf8';
+step 5: open cmd and execute php (cd to www location)
+    type=> php -S localhost:8000
+it also needs to set up php and composer. 
+details: https://cloud.google.com/appengine/docs/flexible/php/using-cloud-sql
+
+
+gcloud shell connect
+gcloud sql connect travel718718 --user=root
+
+now: 
+composer: C:\xampp\phpmyadmin
+
+
+log in sql through google cloud shell:
+gcloud sql connect hackathon-718718:asia-east1:travel718718 --user=root

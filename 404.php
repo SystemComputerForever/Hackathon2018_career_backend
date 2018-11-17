@@ -1,0 +1,1 @@
+<?php echo 'you know? this is 404.'; ?>
