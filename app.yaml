@@ -35,9 +35,11 @@ handlers:
   script: conn.php
 - url: /images
   static_dir: images
-
+#carrer
 - url: /jobpost/addposts
   script: www/loaddata_career.php
+- url: /jobpost/getposts
+  script: www/getjobpost.php
 
 - url: /education/geteducation
   script: www/getedulevel.php
