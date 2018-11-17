@@ -2,7 +2,7 @@
     try{
         extract($_GET);
         require_once('../conn.php');
-
+        include('./init.php');
 
         //generate plan id
         do{
@@ -17,17 +17,16 @@
         //image format --> {"images":["1","2","3"]}< -- wrong
 
         //test variables
-        $target_id = "20181100000000000005";
-        $plan_id = "plan2018112953513017";
-        $from_id = '20181100000000000012';
-        $msg = 3;
-        $comment_level = '2018-11-11 9:40';
+        $post_id = "20181100000000000005";
+        $position = '20181100000000000012';
+        $department = "this is the content....................";
         $created_date = date('Y-m-d h:s');
-        $img = '[{"/images/img1.jpg"},{"/images/img2.jpg"}]';
+        
+        $uinfo = json_decode(getuserinfo($u_id,$pdo),true);
 
 
-        $data = [$comment_id, $target_id, $plan_id,$from_id,$msg,$comment_level, $created_date];
-        $insert = $pdo->prepare('insert into comment(comment_id, target_uid, plan_id, from_uid, msg, comment_level, created_date) values(?,?,?,?,?,?,?);');
+        $data = [$comment_id, $post_id, $position,$department,$created_date,$content, $uinfo['education'], $uinfo['exp']];
+        $insert = $pdo->prepare('insert into comment_c(comment_id, post_uid, position, department, created_date, content, educationleveldesc, workexp) values(?,?,?,?,?,?,?,?);');
         $insert->execute($data);
 
         $result = array();
@@ -43,4 +42,22 @@
         die($e->getMessage());
     }
 
+
+    function getuserinfo($u_id,$pdo){
+        $sql = "select e.education_l as education, exp from user as u, education as e where u.u_id = :uid and u.education = e.e_id;";
+        $select = $pdo->prepare($sql);
+        $result = array();
+        if($select){
+            $select->bindParam(':uid',$u_id);
+            $re = $select->execute();
+            if($re[0]['education']){
+                array_push($result,array('exp'=>$re[0]['exp'],'education'=>$re[0]['education']));
+            }else{
+                array_push($result,array('status'=>'no'));
+            }
+        }else{
+            array_push($result,array('status'=>'no'));
+        }
+        return json_encode($result);
+    }
 ?>

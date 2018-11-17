@@ -45,6 +45,9 @@ handlers:
 - url: /user2/adduser
   script: www/createuser2.php
 
+- url: /comment2/addcomment
+  script: www/addcommentc.php
+
 env_variables:
   # Replace USER, PASSWORD, DATABASE, and CONNECTION_NAME with the
   # values obtained when configuring your Cloud SQL instance.
