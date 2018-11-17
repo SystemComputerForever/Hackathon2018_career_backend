@@ -49,6 +49,8 @@ handlers:
 
 - url: /comment2/addcomment
   script: www/addcommentc.php
+- url: /comment2/getcomment
+  script: www/geycommentc.php
 
 env_variables:
   # Replace USER, PASSWORD, DATABASE, and CONNECTION_NAME with the
