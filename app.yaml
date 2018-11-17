@@ -36,9 +36,14 @@ handlers:
 - url: /images
   static_dir: images
 
+- url: /jobpost/addposts
+  script: www/loaddata_career.php
 
+- url: /education/geteducation
+  script: www/getedulevel.php
 
-
+- url: /user2/adduser
+  script: www/createuser2.php
 
 env_variables:
   # Replace USER, PASSWORD, DATABASE, and CONNECTION_NAME with the

@@ -8,8 +8,8 @@
         $select = $conn->query("select count(*) from $t_name where $field_name = '$id';");
         return $select->fetch()['count(*)'];
     }
-    function getNumofUser($conn){
-        $select = $conn->query('select count(*) from user;');
+    function getNumofUser($t_name,$conn){
+        $select = $conn->query('select count(*) from "'.$t_name.'";');
         return $select->fetch()['count(*)'];
     }
     function getStringTime($date_time){

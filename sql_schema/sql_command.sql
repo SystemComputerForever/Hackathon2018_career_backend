@@ -347,3 +347,58 @@ foreign key (participant_id) references user (u_id)
 --participant_id --> target_id--
 
 --before add foreign key -->set foreign_key_checks=0 --
+
+create table jobpost(
+    id int(20) not null,
+    jobtitle varchar(255) not null,
+    experience varchar(255) not null,
+    salary varchar(50) not null,
+    skills varchar(255) not null,
+    displayname varchar(100) not null,
+    shopdescription longtext,
+    fielddesc varchar(100) not null,
+    subfielddesc varchar(100) not null,
+    industrydesc varchar(50) not null,
+    minexp varchar(50) not null,
+    maxexp varchar(50) not null,
+    date datetime,
+    education varchar(255) not null,
+    primary key (id)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+create table education(
+    e_id int(5) not null,
+    education_l varchar(30) not null,
+    primary key (e_id)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+insert into education values(1,'Bachelor Degree'),(2,'Diploma / Certificate'),(3,'Master Degree');
+create table user2(
+    u_id varchar(20) NOT NULL,
+    user_name varchar(50) NOT NULL,
+    email varchar(255) NOT NULL,
+    phone_num int(30) NOT NULL,
+    pwd varchar(30) NOT NULL,
+    last_name varchar(20) NOT NULL,
+    first_name varchar(30) NOT NULL,
+    yob YEAR(4) NOT NULL,
+    gender tinyint(1) NOT NULL,
+    p_img blob null,
+    education tinyint not null,
+    exp decimal(5,1) not null,
+    primary key(u_id),
+    foreign key (education) references education(e_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+create table comment_c(
+    comment_id varchar(20) not null,
+    post_id int(20) not null,
+    position varchar(20) not null,
+    department varchar(30) not null,
+    created_date datetime,
+    content varchar(255) not null,
+    educationleveldesc tinyint not null,
+    workexp decimal(5,1) not null,
+    primary key(comment_id),
+    foreign key (post_id) references jobpost(id),
+    foreign key (educationleveldesc) references education(e_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

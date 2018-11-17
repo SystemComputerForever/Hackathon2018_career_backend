@@ -5,7 +5,7 @@
         include('./init.php');
         //generate user id
         $user_id = date('Ym');
-        $curr_num = intval(getNumofUser($pdo));
+        $curr_num = intval(getNumofUser("user",$pdo));
         $new_num = $curr_num;
         do{
             ++$new_num;
@@ -13,7 +13,7 @@
         }while(checkIDDuplicate($user_id,"user","u_id",$pdo)>0);
         //add image field
         
-        echo $user_id.'<br/>';
+        // echo $user_id.'<br/>';
         //testing sql: insert into user(u_id, user_name, email, phone_num, pwd, last_name, first_name, yob, gender, country_id, city_id) values('20181100000000000001', 'a user', encode('a@a.com','$e_key'), encode('11111111','$e_key'), encode('test1234','$e_key'), 'a', 'a', '1999', 0, '96', '30');
         // $data = [$user_id, 'a user', encode('a@a.com',$e_key),encode('11111111',$e_key),encode('test1234',$e_key),'a','then b','1999','0','86','30'];
         // $pdo->prepare('insert into user(u_id, user_name, email, phone_num, pwd, last_name, first_name, yob, gender, country_id, city_id) values(:uid, :user_name, :email, :phone, :pwd, :lname, :fname, :yob, :gender, :country, :city);');
@@ -21,10 +21,10 @@
         // $sql = 'insert into user(u_id, user_name, email, phone_num, pwd, last_name, first_name, yob, gender, country_id, city_id) values('.$user_id.', '.'a user'.', encode(\'a@a.com\','.$e_key.'), encode(\'11111111\','.$e_key.'), encode(\'test1234\','.$e_key.'), '..', '..', '..', '..', '..', '..')';
         $sql = 'insert into user(u_id, user_name, email, phone_num, pwd, last_name, first_name, yob, gender, country_id, city_id) values('.$user_id.', "a user", encode(\'a@a.com\',"'.$e_key.'"), encode(\'11111111\',"'.$e_key.'"), encode(\'test1234\',"'.$e_key.'"), \'a\', \'a\', \'1999\', 0, \'86\', \'30\');';
 
-        echo $sql;
+        // echo $sql;
         $pdo->query($sql);
         $result = array();
-        if(getNumofUser($pdo)>$curr_num){
+        if(getNumofUser("user",$pdo)>$curr_num){
             array_push($result,array('status'=>'ok'));
         }else{
             array_push($result,array('status'=>'no'));
