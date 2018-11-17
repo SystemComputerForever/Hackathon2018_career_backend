@@ -4,7 +4,7 @@
         require_once('../conn.php');
         include('./init.php');
         //test variables
-        $u_id = '20181100000000000012';
+        // $u_id = '20181100000000000012';
 
         
         //count comment level
