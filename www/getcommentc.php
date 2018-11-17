@@ -3,9 +3,7 @@
         extract($_GET);
         require_once('../conn.php');
         //job post id
-        $select = $pdo->prepare('select * from comment_c where post_id = :post_id;');
-        $select->bindParam(':post_id',$post_id);
-        $select->execute();
+        $select = $pdo->query('select * from comment_c where post_id = "'.$post_id.'";');
         $result = $select->fetchAll(PDO::FETCH_BOTH);
         $jr = array();
         if(isset($result[0]['comment_id'])){

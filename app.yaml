@@ -33,8 +33,11 @@ handlers:
   script: 404.php
 - url: /conn
   script: conn.php
-- url: /images
-  static_dir: images
+# - url: /images/(.*\.(gif|png|jpg))$
+#   static_dir: images/\1
+#   upload: images/.*\.(gif|png|jpg)$
+#   application_readable: true
+
 #carrer
 - url: /jobpost/addposts
   script: www/loaddata_career.php
@@ -42,17 +45,21 @@ handlers:
   script: www/getjobpost.php
 - url: /jobpost/getpostsbypid
   script: www/getpostbypid.php
+- url: /jobpost/getpostwithfilter
+  script: www/getpostsbyfilter.php
 
 - url: /education/geteducation
   script: www/getedulevel.php
 
 - url: /user2/adduser
   script: www/createuser2.php
+- url: /user2/getuser2
+  script: www/getuser2.php
 
 - url: /comment2/addcomment
   script: www/addcommentc.php
 - url: /comment2/getcomment
-  script: www/geycommentc.php
+  script: www/getcommentc.php
 
 env_variables:
   # Replace USER, PASSWORD, DATABASE, and CONNECTION_NAME with the
