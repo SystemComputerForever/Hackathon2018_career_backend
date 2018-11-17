@@ -40,6 +40,8 @@ handlers:
   script: www/loaddata_career.php
 - url: /jobpost/getposts
   script: www/getjobpost.php
+- url: /jobpost/getpostsbypid
+  script: www/getpostbypid.php
 
 - url: /education/geteducation
   script: www/getedulevel.php
