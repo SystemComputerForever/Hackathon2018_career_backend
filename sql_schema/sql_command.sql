@@ -363,6 +363,7 @@ create table jobpost(
     maxexp varchar(50) not null,
     date datetime,
     education varchar(255) not null,
+    managerialleveldesc varchar(10) default null,
     primary key (id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 

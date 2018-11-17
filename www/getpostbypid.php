@@ -7,10 +7,11 @@
         $select->bindParam(':pid',$p_id);
         $select->execute();
         $result = $select->fetchAll(PDO::FETCH_BOTH);
+        
         $jr = array();
         if(isset($result[0]['id'])){
             foreach($result as $row){
-                $temp = array('post_id'=>$row['id'], 'jobtitle'=>$row['jobtitle'], 'experience'=>$row['experience'], 'salary'=>$row['salary'], 'skills'=>$row['skills'], 'displayname'=>$row['displayname'], 'shortdescription'=>$row['shortdescription'], 'fielddesc'=>$row['fielddesc'], 'subfielddesc'=>$row['subfielddesc'], 'industrydesc'=>$row['industrydesc'],'minexp'=>$row['minexp'],'maxexp'=>$row['maxexp'],'date'=>$row['date'],'education'=>$row['education']);
+                $temp = array('post_id'=>$row['id'], 'jobtitle'=>$row['jobtitle'], 'experience'=>$row['experience'], 'salary'=>$row['salary'], 'skills'=>$row['skills'], 'displayname'=>$row['displayname'], 'shortdescription'=>$row['shortdescription'], 'fielddesc'=>$row['fielddesc'], 'subfielddesc'=>$row['subfielddesc'], 'industrydesc'=>$row['industrydesc'],'minexp'=>$row['minexp'],'maxexp'=>$row['maxexp'],'date'=>$row['date'],'education'=>$row['education'],'managerialleveldesc'=>$row['managerialleveldesc']);
                 array_push($jr, $temp);
             }
         }else{
